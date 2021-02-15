@@ -1,0 +1,52 @@
+#dropdwn {
+  border: unset;
+  width: auto;
+  display: flex;
+  float: left;
+  height: 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+.sort {
+  margin-top: 10px;
+  width: auto;
+  float: right;
+  font-family: "Poppins", sans-serif;
+}
+
+.filter {
+  margin-top: 10px;
+  border: 1px solid grey;
+  border-width: ;
+  border-right: none;
+  border-left: none;
+  padding: 20px;
+  background-color: #f7f7f7;
+  font-family: "Poppins", sans-serif;
+}
+.filter ul li span {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+}
+
+.products {
+  /* height: ; */
+}
+
+button#dropdownMenuButton {
+  background-color: white;
+  color: black;
+  padding: 0px 19px;
+  font-family: "Poppins", sans-serif;
+}
+
+button#dropdownMenu2 {
+  background-color: white;
+  color: black;
+  padding: 0px 19px;
+  font-family: "Poppins", sans-serif;
+}
+ul {
+  list-style: none;
+  font-family: "Poppins", sans-serif;
+}

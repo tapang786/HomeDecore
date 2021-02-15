@@ -1,0 +1,235 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* <!-- ////////////// START PRODUCT DESC////////////////////// --> */
+
+.dropdown {
+  background-color: #f7f7f7;
+  width: 180px;
+  border-left: 0px solid #545454;
+}
+.discrpt {
+  padding: 53px 0px;
+}
+.discrpt h3 {
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+.discrpt p {
+  font-size: 12px;
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif;
+}
+.description-section h3 {
+  font-weight: 700;
+  font-size: 30px;
+  font-family: "Poppins", sans-serif;
+}
+.description-section p {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+}
+.description-section h2 {
+  color: black;
+  font-weight: 700;
+  float: none;
+  font-family: "Poppins", sans-serif;
+}
+.description-section h5 {
+  position: absolute;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+}
+
+.cart-btn {
+  background: black;
+  cursor: col-resize;
+  color: white;
+  padding: 4px 55px;
+  border: 0px;
+}
+.wish-btn {
+  cursor: pointer;
+  background-color: #67c7f5;
+  color: white;
+  border: 0px;
+  padding: 4px 15px;
+}
+.available {
+  margin: 8px 0px;
+}
+/* <!-- ////////////// end PRODUCT DESC////////////////////// --> */
+/* number */
+#myform {
+  text-align: center;
+  display: flex;
+  float: left;
+  height: 34px;
+}
+
+.qty {
+  width: 20px;
+  height: 30px;
+  border: 0px;
+  text-align: center;
+  background-color: transparent;
+}
+input.qtyplus {
+  padding: 5px 9px;
+  width: 25px;
+  height: 34px;
+  background-color: transparent;
+  border: 0px;
+}
+input.qtyplus:hover {
+  background-color: #67c7f5;
+  border: 0px solid;
+}
+input.qtyminus:hover {
+  background-color: #67c7f5;
+}
+
+input.qtyminus {
+  padding: 5px 10px;
+  width: 25px;
+  height: 34px;
+  background-color: transparent;
+  border: 0px;
+}
+form {
+  border: 1px solid #b9b1b0;
+  width: 80 px;
+}
+/* <!-- ////////////// START PRODUCT DESC////////////////////// --> */
+.discript {
+  height: auto;
+  background-color: #f7f7f7;
+}
+
+/* <!-- ////////////// start similar DESC////////////////////// --> */
+.similar h1 {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+}
+/* <!-- ////////////// END similar DESC////////////////////// --> */
+.dropdown button {
+  background-color: #f7f7f7;
+  color: #b0b0b0;
+  border: 0px;
+  font-size: 15px;
+}
+.dropdown button:hover {
+  background-color: #67c7f5;
+}
+.available {
+  float: right;
+}
+.drop {
+  margin: 40px 0px 0px;
+}
+.carousel {
+  margin: 0 auto;
+  width: 1140px;
+  height: 300;
+}
+.slide {
+  width: 20px;
+}
+.slide {
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+}
+.next.slick-arrow {
+  position: absolute;
+  top: 100px;
+  left: -27px;
+}
+.prev.slick-arrow {
+  position: absolute;
+  z-index: 99;
+  top: 100px;
+  right: -20px;
+}
+.gallery {
+  margin-top: 70px;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+}
+.gallery h1 {
+  font-size: 33px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+}
+.gallery p {
+  font-size: 11px;
+}
+.gallery-button {
+  background-color: transparent;
+  border: unset;
+  margin: 20px;
+}
+.gallery-button:hover {
+  text-decoration: underline;
+  color: #82cff5;
+}
+.description-section {
+  padding: 0px 19px;
+}
+
+/* <!-- //////////////  END SLIDE SECTION ////////// --> */
+.carousel {
+  margin: 0 auto;
+  width: 540px;
+  height: 40;
+}
+.slide {
+  width: 18px;
+  height: 30px;
+}
+.slide {
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+}
+.next.slick-arrow {
+  position: absolute;
+  top: 43px;
+  left: -27px;
+}
+.prev.slick-arrow {
+  position: absolute;
+  z-index: 99;
+  top: 43px;
+  right: -5px;
+}
+.gallery {
+  margin-top: 60px;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+}
+.gallery h1 {
+  font-size: 33px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+}
+.gallery p {
+  font-size: 11px;
+}
+.gallery-button {
+  background-color: transparent;
+  border: unset;
+  margin: 20px;
+}
+.gallery-button:hover {
+  text-decoration: underline;
+  color: #82cff5;
+}
+
+@media only screen and (max-width: 320px) {
+}
