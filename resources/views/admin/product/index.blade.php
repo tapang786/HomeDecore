@@ -72,9 +72,11 @@
             </td>
       <td>
         @if($item->status==1)
-        <button class="btn btn-success btn-xs edit btn-rounded pstatus" id="1">Published</button></td>
+          <button class="btn btn-success btn-xs edit btn-rounded pstatus" id="1">Published</button></td>
+        @elseif($item->status == 2)
+          <button class="btn btn-danger btn-xs edit btn-rounded pstatus" id="2">Pending</button></td>
         @else
-        <button class="btn btn-danger btn-xs edit btn-rounded pstatus" id="0">In Draft</button></td>
+          <button class="btn btn-danger btn-xs edit btn-rounded pstatus" id="3">Draft</button></td>
         @endif
       <td>
         <div class="dropdown">

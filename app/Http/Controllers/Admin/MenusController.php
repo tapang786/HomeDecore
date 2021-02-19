@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Menu;
+use App\Menus;
 class MenusController extends Controller
 {
     /**
@@ -15,6 +16,23 @@ class MenusController extends Controller
     public function index()
     {
         //
+        $menus = Menus::get();
+        $d['title']="All Menus";
+        //$d['menus']=Attributes::get();
+        $attrs = [];
+
+        foreach ($menus as $ak => $avlu) {
+            # code...
+            $temp = array(
+                'id' => $avlu->id,
+                'name' => $avlu->name,
+                'slug' => $avlu->slug,
+            );
+            array_push($attrs, $temp);
+        }
+
+        $d['menus'] = $attrs;
+        return view('admin.menu.menus',$d);
     }
 
     /**
@@ -36,6 +54,12 @@ class MenusController extends Controller
     public function store(Request $request)
     {
         //
+        $categ=Menus::updateOrCreate(['id'=>$request->id],[
+           'name'=>$request->input('name'),
+        ]);
+        
+        //return json_encode($categ);
+        return redirect()->back()->with('success', 'added');
     }
 
     /**
@@ -81,5 +105,27 @@ class MenusController extends Controller
     public function destroy($id)
     {
         //
+        $menu_type = Menus::where('id','=',$id)->pluck('slug')[0];
+        Menus::destroy($id);
+        $menus = Menu::where('type','=',$menu_type)->get();
+        if($menus) {
+            foreach ($menus as $sky => $svl) {
+                Menu::destroy($svl->id);
+            }
+        }
+        
+        //$this->deleteChilds($menu_type);
+        return json_encode(['status'=> true]);
     }
+
+    /*public function deleteChilds($menu_type)
+    {
+        # code...
+        $menu_type = Menus::where('type','=',$menu_type)->get();
+        if($menu_type) {
+            foreach ($menu_type as $sky => $svl) {
+                Menus::destroy($svl->id);
+            }
+        }
+    }*/
 }

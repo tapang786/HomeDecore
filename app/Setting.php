@@ -9,22 +9,25 @@ class Setting extends Model
 {
     use HasFactory;
     protected $table="settings";
-        protected $fillable=['id',
-                         'business_name',
-                         'state',
-                         'city',
-                         'country',
-                         'address',
-                         'zip',
-                         'helpline',
-                         'email',
-                         'pan',
-                         'cin',
-                         'gstin',
-                         'site_url',
-                         'logo',
-                         'mailtype'
-                          ];
+    protected $fillable = [
+        'id',
+        'title',
+        'desc',
+        'business_name',
+        'state',
+        'city',
+        'country',
+        'address',
+        'zip',
+        'helpline',
+        'email',
+        'pan',
+        'cin',
+        'gstin',
+        'site_url',
+        'logo',
+        'mailtype'
+    ];
     public $timestamps=true;
     public function countryName()
     {

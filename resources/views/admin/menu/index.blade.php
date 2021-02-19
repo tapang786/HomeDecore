@@ -5,7 +5,7 @@
 <!-- /Row -->
 <div class="card">
     <div class="card-header ">
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-sm-6">
             <div class="row">
               @if(count($main_menu) > 0) 
@@ -19,21 +19,24 @@
                   </div>
               @endif
               <div class="form-group col-sm-3">
-                <button class="new_menu">New Menu</button>
+                
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Create Menu</button>
               </div>
+              
+
             </div>
           </div>
-        </div>
+        </div> --}}
         <div class="row">
             <div class="col-sm-6">
-                <h4 class="card-title">Menus </h4>
+                <h4 class="card-title"> <a href="{{ url('admin/menu') }}">Back</a></h4>
             </div>
             <div class="col-sm-6 text-right">
               @can('category_create')
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
                         <a class="btn btn-success add_cat" href="javascript:void(0)" data-target="#addCat" data-toggle="modal">
-                            {{ trans('global.add') }} Menu
+                            {{ trans('global.add') }} Menu 
                         </a>
                     </div>
                 </div>
@@ -124,7 +127,7 @@
           <div class="form-group">
             <label for="recipient-name" class="control-label mb-10">Url</label>
             <input type="text" class="form-control url" id="url"  name="url" value="">
-            {{-- <input type="hidden" name="url" id="url" value=""> --}}
+            <input type="hidden" name="menu_type" id="menu_type" value="{{ $menu_type }}">
           </div>
         </div>
         <div class="modal-footer">
@@ -135,6 +138,35 @@
     </div>
   </div>
 </div>
+
+
+
+{{-- 
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form>
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Create Menu</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div> --}}
+
+
 @push('ajax-script')
 <script type="text/javascript">
 
@@ -181,7 +213,7 @@
     //
     var id=$(this).parents('tr').attr('id');
 
-    $.get('{{ url('/admin/menu') }}/'+id+'/edit', function(data) {
+    $.get('{{ url('/admin/manage-menu') }}/'+id+'/edit', function(data) {
       var d=$.parseJSON(data);
       $('.name').attr('value',d.name);
       $('.url').attr('value',d.url);

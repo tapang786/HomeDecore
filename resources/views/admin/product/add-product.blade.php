@@ -14,6 +14,21 @@
 <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-info-outline mr-10"></i>about product</h6>
 <hr class="light-grey-hr"/>
 <div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <?php $sts = ['publish'=>1, 'pending'=>2, 'draft'=>3]; ?>
+      <label class="control-label mb-10">Status </label>
+      <select name="product_status" class="form-control " >
+          @isset($sts)
+            @foreach($sts as $k => $item)
+              <option value="{{ $item }}" @isset($product) @if($item == $product->status) selected @endif @endisset >{{ Str::ucfirst($k)}}</option>
+            @endforeach
+          @endisset
+      </select>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-4">
     <div class="form-group">
       <label class="control-label mb-10">Product Category <span class=" text-danger">*</span></label>
@@ -70,7 +85,7 @@
           <select name="attributes[{{-- {{ $v['slug'] }}_ --}}{{ $v['id'] }}][]" id="{{ $v['id'] }}" class="form-control select2">
             <option value="0">Select attributes</option>
             @foreach($v['terms'] as $itemk => $itmvl)
-              <option value="{{ $itmvl->id }}" @isset($product_terms) @if($product_terms[$v['id']]['term_id'] == $itmvl->id) selected @endif @endisset >{{ Str::ucfirst($itmvl->value)}}</option>
+              <option value="{{ $itmvl->id }}" @isset($product_terms[$v['id']]['term_id']) @if($product_terms[$v['id']]['term_id'] == $itmvl->id) selected @endif @endisset >{{ Str::ucfirst($itmvl->value)}}</option>
             @endforeach
           </select>
         </div>

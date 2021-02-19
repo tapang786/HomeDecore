@@ -1,9 +1,6 @@
 @extends('layouts.master')
 @section('content')
 
-<?php
-  //print_r ($settings);
-?>
 <body>
 
     <!-- ///////////  START IMAGE SECTION ////////// -->

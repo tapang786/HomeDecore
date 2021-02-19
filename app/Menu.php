@@ -26,6 +26,7 @@ class Menu extends Model
         'slug',
         'parent_menu',
         'url',
+        'type',
     ];
 
     public function getSlugOptions() : SlugOptions

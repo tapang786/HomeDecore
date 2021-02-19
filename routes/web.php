@@ -9,12 +9,19 @@ use App\Http\Controllers\Frontend\PageController;
 
 //  Frontend //
 Route::redirect('/home', '/');
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('frontend.home');
-});
+});*/ 
 Route::group(['namespace' => 'Frontend'], function () {
     //
+    Route::get('/', 'HomeController@index');
+        /*return view('frontend.home');
+    });*/
     Route::get('/page/{slug}', 'PageController@showPage')->name('homepage');
+
+    //Shop 
+    Route::resource('shop','ShopController');
+    Route::post('/shop-filter','ShopController@productFilter');
 });
 
 
@@ -44,8 +51,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('save-varients/','ProductController@saveVarient')->name('save-varients');
 
     //Menu
-    Route::resource('menu','MenuController');
-    Route::get('destroy-menu/{id}','MenuController@destroy');
+    Route::resource('menu','MenusController');
+    Route::get('destroy-menus/{id}','MenusController@destroy');
+        Route::resource('manage-menu','MenuController');
+        Route::get('destroy-menu/{id}','MenuController@destroy');
     
     //Attribute
     Route::resource('attribute','AttributesController');
@@ -54,6 +63,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         Route::resource('terms','AttributesTermsController');
         Route::get('delete-term/{id}','AttributesTermsController@destroy');
     //
+
     Route::resource('tax','TaxController');
     Route::resource('color','ColorCustomizationController');
     Route::resource('product-size-setting','ProductSizeController');
@@ -92,7 +102,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
      Route::get('generate-pdf',"OrderController@invoicePdf")->name("generate-pdf");
      Route::post('change-order-status',"OrderController@changeOrderStatus");
      Route::resource('mail-template',"MailTemplate");
+
      Route::resource('setting',"SettingController");
+
      Route::get('return-back', function() {
         echo '<script type="text/javascript">'
                , 'history.go(-2);'

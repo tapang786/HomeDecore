@@ -18,9 +18,9 @@ class SettingController extends Controller
     {
         $d['title']="Business Information Setting";
         $d['setting']=$st=Setting::with('countryName')->first();
-         if($st->mailtype!="" && $st->mailtype=="smtp")
+        if($st->mailtype!="" && $st->mailtype=="smtp")
         {
-           $d["mail"]=DB::table("email_setting")->first();
+          $d["mail"]=DB::table("email_setting")->first();
         }
         $d['country']=DB::table('countries')->orderBy("name")->get();
         return view('admin.setting.site-setting',$d);
@@ -44,35 +44,39 @@ class SettingController extends Controller
      */
     public function store(Request $req)
     {
-            $st="";
+      //
+      $st="";
 
-        $mailtype="";
-        if($req->file('logo')!=null || !empty($req->file('logo')) || $req->hasFile('logo'))
-              {
-                
-                 $name=$req->file("logo")->getClientOriginalName();
-                 $req->file("logo")->move('logo',$name);
-                 $st=$name;
-              }
-              if($req->mail=="smtp")
-              {
-                $mailtype=$req->mail;
-                EmailSetting::updateOrCreate(['id' => $req->mid],[
-                        'host' => $req->host,
-                        'port' => $req->port,
-                        'encrypt' =>$req->encrypt,
-                        'name'=>$req->sname,
-                        'email'=>$req->semail,
-                        'password'=>$req->password
-                ] );
-              }elseif($req->mail=="sendmail")
-              {
-                $mailtype=$req->mail;
-              }
-       $setting= Setting::updateOrCreate([
+      $mailtype="";
+      if($req->file('logo') != null || !empty($req->file('logo')) || $req->hasFile('logo'))
+      {
+        $name=$req->file("logo")->getClientOriginalName();
+        $req->file("logo")->move('logo',$name);
+        $st = $name;
+      } else {
+        $st = $req->old_logo;
+      }
+      if($req->mail=="smtp")
+      {
+        $mailtype=$req->mail;
+        EmailSetting::updateOrCreate(['id' => $req->mid],[
+          'host' => $req->host,
+          'port' => $req->port,
+          'encrypt' =>$req->encrypt,
+          'name'=>$req->sname,
+          'email'=>$req->semail,
+          'password'=>$req->password
+        ] );
+      }elseif($req->mail=="sendmail")
+      {
+        $mailtype=$req->mail;
+      }
+      $setting= Setting::updateOrCreate([
             'id'=>$req->id],
              [
-               'business_name'=>$req->bname ,
+               'title'=>$req->site_title,
+               'desc'=>$req->site_description,
+               'business_name'=>$req->bname,
                'state'=>$req->state,
                'city'=>$req->city,
                'country'=>$req->country,
@@ -87,7 +91,7 @@ class SettingController extends Controller
                'logo'=>$st,
                'mailtype'=>$mailtype
              ]);
-       return back();
+      return back();
     }
 
     /**

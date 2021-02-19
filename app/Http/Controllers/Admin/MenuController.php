@@ -24,8 +24,6 @@ class MenuController extends Controller
         	$menu = Menu::where('type','=', $menu_type)->orderBy("name","desc")->get();
         } else {
         	$menu_type = Menus::latest()->pluck('slug')[0];
-        	/*print_r($menu_type);
-        	exit;*/
         	$menu = Menu::where('type','=', $menu_type)->orderBy("name","desc")->get();
         }
         
@@ -71,7 +69,8 @@ class MenuController extends Controller
         $main_menu = Menus::latest()->orderBy("name","desc")->get();
         $d['main_menu'] = Menus::latest()->orderBy("name","desc")->get(); //(count($main_menu) > 0 ) ? $main_menu : 0 ;
         $d['menus']=$menus;
-       	$d['parrent_menu']=Menu::orderBy("name","desc")->get();
+        $d['menu_type']=$menu_type;
+       	$d['parrent_menu']=Menu::where('type','=', $menu_type)->orderBy("name","desc")->get();
         $d['title']='Menus';
         return view('admin.menu.index',$d);
     }
@@ -99,9 +98,10 @@ class MenuController extends Controller
            'name'=>$request->input('name'),
            'url'=>$request->input('url'),
            'parent_menu'=>$request->input('pname','No Parent'),
+           'type'=>$request->input('menu_type'),
         ]);
           //return json_encode($categ);
-        return redirect('/admin/menu');
+         return redirect()->back()->with('success', 'added'); //return redirect('/admin/menu');
     }
 
     /**

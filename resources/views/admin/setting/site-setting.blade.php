@@ -8,6 +8,23 @@
 @csrf
 <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-info-outline mr-10"></i>About Business</h6>
 <hr class="light-grey-hr"/>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label class="control-label mb-10">Title<span class="text-danger">*</span></label>
+      <input type="text" name="site_title" required class="form-control" value="{{isset($setting->title)?$setting->title:''}}">
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="form-group">
+      <label class="control-label mb-10">Description<span class=" text-danger">*</span></label>
+      <textarea name="site_description" required class="form-control">{{ isset($setting->desc)?$setting->desc:""}}</textarea>
+    </div>
+  </div>
+</div>
+
+
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">
@@ -94,24 +111,24 @@
 <input type="text" class="form-control" id="exampleInputuname_1" placeholder="GSTIN" name="gstin" value="{{ isset($setting->gstin)?$setting->gstin:""}}">
 </div>
 </div> 
- <div class="col-md-6">
+<div class="col-md-6">
 <div class="form-group">
 <label class="control-label mb-10">Business logo </label>
 <input type="file" class="form-control" id="exampleInputuname_1"  name="logo" >
 </div>
 </div>
- <div class="col-md-6">
-<div class="form-group">
-
-<img src="{{ isset($setting->logo)?url('logo'.'/'.$setting->logo):'https://image.shutterstock.com/image-vector/shield-letter-s-logosafesecureprotection-logomodern-260nw-633031571.jpg'}}" style="height:100px;width:200px;" alt="logo">
+<div class="col-md-6">
+  <div class="form-group">
+    <img src="{{ isset($setting->logo)?url('logo'.'/'.$setting->logo):'https://image.shutterstock.com/image-vector/shield-letter-s-logosafesecureprotection-logomodern-260nw-633031571.jpg'}}" style="height:100px;width:200px;" alt="logo">
+    <input type="hidden" name="old_logo" value="{{ isset($setting->logo)? $setting->logo:''}}">
+  </div>
 </div>
-</div>
- <div class="col-md-6">
-<div class="form-group">
-<label class="control-label mb-10">Site Url </label>
-<input type="url" class="form-control" id="exampleInputuname_1"  name="site_url" placeholder="www.twistshake.com" value='{{ isset($setting->site_url)?$setting->site_url:""}}'
->
-</div>
+<div class="col-md-6">
+  <div class="form-group">
+    <label class="control-label mb-10">Site Url </label>
+    <input type="url" class="form-control" id="exampleInputuname_1"  name="site_url" placeholder="www.twistshake.com" value='{{ isset($setting->site_url)?$setting->site_url:""}}'
+    >
+  </div>
 </div>
 </div>
 <div class="seprator-block"></div>
@@ -134,6 +151,8 @@
   </div>
 </div>
 <br>
+
+
 
 <div class="row {{ $setting->mailtype=="sendmail"?'mailform':'' }}">
 <div class="col-sm-6">
@@ -180,7 +199,30 @@
 </div>
 </div>
 </div>
+
+
+{{-- <div class="row">
+  <div class="col-sm-6">
+    @if($setting->mailtype=="sendmail")
+    <input type="radio" name="mail" value="sendmail" class="form-check mail" checked=""> Send Mail
+    @else
+    <input type="radio" name="mail" value="sendmail" class="form-check mail" > Send Mail
+    @endisset
+  </div>
+  <div class="col-sm-6">
+    @if($setting->mailtype=="smtp")
+    <input type="radio" name="mail" value="smtp" class="form-check mail" checked=""> SMTP
+    @else
+         <input type="radio" name="mail" value="smtp" class="form-check mail" > SMTP
+        @endif 
+  </div>
 </div>
+<br> --}}
+
+
+
+</div>
+
 <div class="form-actions">
 <button class="btn btn-success btn-icon left-icon mr-10 pull-left "> <i class="fa fa-check"></i> <span>Save</span></button>
 <button type="button" class="btn btn-warning pull-left">Cancel</button>

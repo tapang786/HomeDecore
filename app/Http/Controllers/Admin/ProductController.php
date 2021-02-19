@@ -36,10 +36,10 @@ class ProductController extends Controller
     public function index()
     {
         abort_if(Gate::denies('product_access'),'403 forbidden');
-        session()->pull('product');
+        /*session()->pull('product');
         session()->pull('clrid');
         session()->pull('colorid');
-        session()->pull('setFabric');
+        session()->pull('setFabric');*/
         $d['title']="All Products";
         $d['product']=Product::orderBy('id','desc')->where('parent_id', '=', 0)->get();
         return view('admin.product.index',$d);
@@ -76,7 +76,6 @@ class ProductController extends Controller
           }
           $d['attributes'] = $attributes;
         }
-
         return view('admin.product.add-product',$d);
     }
 
@@ -91,27 +90,28 @@ class ProductController extends Controller
 
       $thumb=[];
       $i=0;
-            
+      
       $product = Product::updateOrCreate(['id'=>$request->pid], [
-         'pname'=>$request->pname,
-         'categories'=>$request->catry,
-         'sub_category'=>($request->subcat == 0) ? '' : $request->subcat,
-         'sub_sub_category'=>($request->sub_sub_category == 0)?'':$request->sub_sub_category,
-         'sku_id'=>$request->sku,
-         'p_price'=>$request->p_price,
-         's_price'=>$request->s_price,
-         'discount'=>$request->discount,
-         'p_s_description'=>$request->p_s_description,
-         'feature'=>$request->feature,
-         'p_description'=>$request->descript,
-         'meta_title'=>$request->meta_title,
-         'meta_keyword'=>$request->meta_keyword,
-         'stock'=>$request->stock,
-         'stock_alert'=>$request->stock_alert,
-         'shipping'=>$request->ship,
-         'return_policy'=>$request->return_policy,
-         'tax_type'=>($request->tax=="excluded")?$request->tax_type:"",
-         'tax'=>$request->tax
+        'pname'=>$request->pname,
+        'categories'=>$request->catry,
+        'sub_category'=>($request->subcat == 0) ? '' : $request->subcat,
+        'sub_sub_category'=>($request->sub_sub_category == 0)?'':$request->sub_sub_category,
+        'sku_id'=>$request->sku,
+        'p_price'=>$request->p_price,
+        's_price'=>$request->s_price,
+        'discount'=>$request->discount,
+        'p_s_description'=>$request->p_s_description,
+        'feature'=>$request->feature,
+        'p_description'=>$request->descript,
+        'meta_title'=>$request->meta_title,
+        'meta_keyword'=>$request->meta_keyword,
+        'stock'=>$request->stock,
+        'stock_alert'=>$request->stock_alert,
+        'shipping'=>$request->ship,
+        'return_policy'=>$request->return_policy,
+        'tax_type'=>($request->tax=="excluded")?$request->tax_type:"",
+        'tax'=>$request->tax,
+        'status' => $request->product_status,
       ]);
 
       if($request->has('thumbnail')){
@@ -158,6 +158,7 @@ class ProductController extends Controller
           $childProduct->return_policy=$request->return_policy;
           $childProduct->tax_type=($request->tax=="excluded")?$request->tax_type:"";
           $childProduct->tax=$request->tax;
+          $childProduct->status=$request->product_status;
           $childProduct->save();
         }
         
