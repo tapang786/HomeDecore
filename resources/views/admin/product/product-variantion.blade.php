@@ -426,11 +426,11 @@
                           </div>
                            @endif
                         </div>
-    </div>
-</div>
-@push('ajax-script')
-<script type="text/javascript">
-    $(document).ready(function() {
+        </div>
+      </div>
+    @push('ajax-script')
+    <script type="text/javascript">
+      $(document).ready(function() {
         $(document).on('change', '.neckstyle', function(event) {
          let id=$(this).val();
         $.get('{{ url('admin/get-style-image') }}/'+id, function(data) {

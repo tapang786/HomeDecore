@@ -22,6 +22,13 @@ Route::group(['namespace' => 'Frontend'], function () {
     //Shop 
     Route::resource('shop','ShopController');
     Route::post('/shop-filter','ShopController@productFilter');
+
+    // Product
+    // Route::resource('product','ShopController');
+    Route::get('/product/{slug}', 'ProductController@showProduct')->name('single-product');
+
+
+
 });
 
 
@@ -85,33 +92,31 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('set-custom-style/{id}/{op?}','SetProductVariantController@setCustomStyle')->name('set-custom-style');
     //Route::post('set-sleeve_type/{id}','SetProductVariantController@setSleeveType')->name('set-sleeve_type');
     // Route::post('set-length_type/{id}','SetProductVariantController@setLengthType')->name('set-length_type');
-     Route::get('get-size-value/{id}','SetProductVariantController@getSizeValue')->name('get-size-value');
-     Route::post('set-standard_size','SetProductVariantController@setStandardSize');
-     Route::post('set-available-height','SetProductVariantController@setAvailableHeight');
-     Route::post('add-matching-product','SetProductVariantController@addMatchingProducts');
-     Route::get('reset-session','SetProductVariantController@resetSession');
-     Route::get('editVariant/{id}/{type}','SetProductVariantController@editVariant');
-     Route::delete('remove-variant/{id}','SetProductVariantController@removeVariant');
-     Route::delete('remove-product-gallary/{id}','SetProductVariantController@removeProductGallary');
-     Route::delete('remove-whole-set-variant/{id}/{style}','SetProductVariantController@removeWholeSetVariant');
-     Route::resource('home','HomeController');
-     Route::get('load-page','HomeController@loadPage')->name('load-page');
-     Route::get('add-module','HomeController@addModule')->name('add-module');
-     Route::resource('order', 'OrderController');
-     Route::get('order-return', 'OrderController@orderReturn')->name('order-return');
-     Route::get('generate-pdf',"OrderController@invoicePdf")->name("generate-pdf");
-     Route::post('change-order-status',"OrderController@changeOrderStatus");
-     Route::resource('mail-template',"MailTemplate");
+	Route::get('get-size-value/{id}','SetProductVariantController@getSizeValue')->name('get-size-value');
+	Route::post('set-standard_size','SetProductVariantController@setStandardSize');
+	Route::post('set-available-height','SetProductVariantController@setAvailableHeight');
+	Route::post('add-matching-product','SetProductVariantController@addMatchingProducts');
+	Route::get('reset-session','SetProductVariantController@resetSession');
+	Route::get('editVariant/{id}/{type}','SetProductVariantController@editVariant');
+	Route::delete('remove-variant/{id}','SetProductVariantController@removeVariant');
+	Route::delete('remove-product-gallary/{id}','SetProductVariantController@removeProductGallary');
+	Route::delete('remove-whole-set-variant/{id}/{style}','SetProductVariantController@removeWholeSetVariant');
+	Route::resource('home','HomeController');
+	Route::get('load-page','HomeController@loadPage')->name('load-page');
+	Route::get('edit-section/{id}','HomeController@editSection')->name('edit-section');
+	Route::get('add-module','HomeController@addModule')->name('add-module');
+	Route::resource('order', 'OrderController');
+	Route::get('order-return', 'OrderController@orderReturn')->name('order-return');
+	Route::get('generate-pdf',"OrderController@invoicePdf")->name("generate-pdf");
+	Route::post('change-order-status',"OrderController@changeOrderStatus");
+	Route::resource('mail-template',"MailTemplate");
 
-     Route::resource('setting',"SettingController");
+	Route::resource('setting',"SettingController");
 
-     Route::get('return-back', function() {
+	Route::get('return-back', function() {
         echo '<script type="text/javascript">'
                , 'history.go(-2);'
                , '</script>';
      });
 
-   
 });
-
-

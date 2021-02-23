@@ -1,8 +1,14 @@
 @extends('layouts.master')
-@section('scripts')
+{{-- @section('scripts')
 @parent
 <link rel="stylesheet" href="css/shop.css" />
+@endsection --}}
+
+@section('styles')
+@parent
+<link href="{{ asset('css/shop.css') }}" rel="stylesheet" />
 @endsection
+
 @section('content')
 <body>
 <!-- ////////////////// start section//////////////////// -->

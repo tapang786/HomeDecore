@@ -93,14 +93,4 @@
   </section>
 
 <!-- /////////// END NAV BAR  /////////////// -->
-<!-- ///////////  START TEXT BAR ////////////// -->
 
-<section>
-  <div class="container disc">
-    <p>
-      We are Irish owned and operated. Find a cheaper price elsewhere and
-      we'll match it AND give an extra $10 off!
-    </p>
-  </div>
-</section>
-<!-- //////////// END TEXT BAR ///////////// -->

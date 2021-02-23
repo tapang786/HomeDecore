@@ -102,6 +102,7 @@ class ProductController extends Controller
         'discount'=>$request->discount,
         'p_s_description'=>$request->p_s_description,
         'feature'=>$request->feature,
+        'sales'=>$request->sales,
         'p_description'=>$request->descript,
         'meta_title'=>$request->meta_title,
         'meta_keyword'=>$request->meta_keyword,
@@ -150,6 +151,7 @@ class ProductController extends Controller
           $childProduct->discount=$request->discount;
           $childProduct->p_s_description=$request->p_s_description;
           $childProduct->feature=$request->feature;
+          $childProduct->sales=$request->sales;
           $childProduct->p_description=$request->descript;
           $childProduct->meta_title=$request->meta_title;
           $childProduct->meta_keyword=$request->meta_keyword;

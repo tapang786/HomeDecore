@@ -14,6 +14,7 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" /> --}}
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+    
 
     {{-- <link href="{{ asset('css/style.css') }}" rel="stylesheet" /> --}}
 

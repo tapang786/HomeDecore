@@ -1,14 +1,17 @@
 @extends('layouts.master')
 @section('content')
 
-<body>
+<!-- ///////////  START TEXT BAR ////////////// -->
+
+  <section>
+    {{-- @php print_r($settings); @endphp --}}
+    {!! $settings['header-line']->contents !!}
+  </section>
+  <!-- //////////// END TEXT BAR ///////////// -->
 
     <!-- ///////////  START IMAGE SECTION ////////// -->
-
-    <section
-      class="hero-section d-flex justify-content-center position-relative"
-    >
-      <div class="container position-absolute h-100" id="content">
+    <section  class="hero-section d-flex justify-content-center position-relative" >
+      {{-- <div class="container position-absolute h-100" id="content">
         <div class="left-part-content">
           <p>OUR FLOORS ARE DESIGNED TO LAST <br />A LIFETIME</p>
           <h1><strong><b>Flooring For<br />Any Interior</b></strong></h1>
@@ -24,7 +27,23 @@
       <div class="w-100 d-flex">
         <div class="left-part"></div>
         <div class="right-part imager" id="left-image"></div>
-      </div>
+      </div> --}}
+
+      {!!  $settings['hero-section']->contents !!}
+
+      {{-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="http://homedecor.ewtlive.in/image/slider.png" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="http://homedecor.ewtlive.in/image/slider.png" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="http://homedecor.ewtlive.in/image/slider.png" alt="Third slide">
+          </div>
+        </div>
+      </div> --}}
     </section>
 
     <!-- ///////////  END IMAGE SECTION ////////// -->
@@ -128,26 +147,19 @@
 
               <div class="gallery-image">
                 <div class="row ">
-                  <div class="col-sm-3">
-                    <img src="image/gal-4.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
-                  <div class="col-sm-3">
-                    <img src="image/gal-3.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
-                  <div class="col-sm-3">
-                    <img src="image/gal-2.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
-                  <div class="col-sm-3">
-                    <img src="image/gal-5.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
+                  @foreach($best_seller as $k => $vl)
+                    @php 
+                      //echo $vl->thumbnails;
+                      $thumbs = json_decode($vl->thumbnails,true);
+                    @endphp
+                    <div class="col-sm-3 cus_sales">
+                      <a href="{{ url('product/'.$vl->slug) }}">
+                        <img src="{{ url('product/thumbnail') }}/{{ $thumbs[0] }}" alt="" />
+                      </a>
+                      <a href="{{ url('product/'.$vl->slug) }}"><h6 class="text-center mt-3">{{ $vl->pname }}</h6></a>
+                      <p class="text-center text-danger"><b>${{ $vl->s_price }}</b></p>
+                    </div>
+                  @endforeach
                 </div>
               </div>
             </div>
@@ -155,26 +167,19 @@
 
               <div class="gallery-image">
                 <div class="row">
-                  <div class="col-sm-3">
-                    <img src="image/gal-1.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
-                  <div class="col-sm-3">
-                    <img src="image/gal-2.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
-                  <div class="col-sm-3">
-                    <img src="image/gal-3.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
-                  <div class="col-sm-3">
-                    <img src="image/gal-4.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
+                  @foreach($feature as $k => $vl)
+                    @php 
+                      //echo $vl->thumbnails;
+                      $thumbs = json_decode($vl->thumbnails,true);
+                    @endphp
+                    <div class="col-sm-3 cus_featured">
+                      <a href="{{ url('product/'.$vl->slug) }}">
+                        <img src="{{ url('product/thumbnail') }}/{{ $thumbs[0] }}" alt="" />
+                      </a>
+                      <a href="{{ url('product/'.$vl->slug) }}"><h6 class="text-center mt-3">{{ $vl->pname }}</h6></a>
+                      <p class="text-center text-danger"><b>${{ $vl->s_price }}</b></p>
+                    </div>
+                  @endforeach
                 </div>
               </div>
             </div>
@@ -182,37 +187,28 @@
 
               <div class="gallery-image">
                 <div class="row">
-                  <div class="col-sm-3">
-                    <img src="image/gal-1.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
-                  <div class="col-sm-3">
-                    <img src="image/gal-2.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
-                  <div class="col-sm-3">
-                    <img src="image/gal-3.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
-                  <div class="col-sm-3">
-                    <img src="image/gal-4.png" alt="" />
-                    <h6 class="text-center mt-3">Reef Geometric Rug RF15</h6>
-                    <p class="text-center text-danger"><b>$160.25</b></p>
-                  </div>
+                  @foreach($sales as $k => $vl)
+                    @php 
+                      //echo $vl->thumbnails;
+                      $thumbs = json_decode($vl->thumbnails,true);
+                    @endphp
+                    <div class="col-sm-3 cus_sales">
+                      <a href="{{ url('product/'.$vl->slug) }}">
+                        <img src="{{ url('product/thumbnail') }}/{{ $thumbs[0] }}" alt="" />
+                      </a>
+                      <a href="{{ url('product/'.$vl->slug) }}"><h6 class="text-center mt-3">{{ $vl->pname }}</h6></a>
+                      <p class="text-center text-danger"><b>${{ $vl->s_price }}</b></p>
+                    </div>
+                  @endforeach
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-
-
       <div class="wrapper mt-5">
         <video class="video">
-            <source src="video/video.mp4" type="video/mp4" />
+          <source src="video/video.mp4" type="video/mp4" />
         </video>
       <div class="playpause"></div>
     </div>
@@ -307,24 +303,30 @@
       </div>
     </section>
     <!-- //////////////  END SLIDER SECTION ////////// -->
-    <!-- //////////////  START NEWS SECTION ////////// -->
-    <section class="section">
-      <div class="container">
-        <div class="section-1 text-light">
-          <h1>SIGN UP TO OUR NEWSLETTER</h1>
-        </div>
-        <div class="section-2">
-          <input type="search" class="enter mt-3" placeholder="Enter Email" />
-          <button type="submit" id="save">SIGN UP</button>
-        </div>
-      </div>
-    </section>
-    <!-- //////////////  END NEWS SECTION ////////// -->
-
-    <!-- //////////////  JAVA SCRIPT ////////// -->
+    
 
 @endsection
 @section('scripts')
 @parent
+<style type="text/css">
+  .cus_featured img {
+    width: 270px;
+    height: 290px;
+  }
 
+  .cus_sales img {
+    width: 270px;
+    height: 290px;
+  }
+
+  #carouselExampleControls{
+    width: 100%;
+  }
+  #carouselExampleControls .slick-track {
+    width: 100% !important;
+  }
+  #carouselExampleControls .slick-slide {
+    width: 100% !important;
+  }
+</style>
 @endsection

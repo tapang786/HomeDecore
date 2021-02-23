@@ -1,3 +1,16 @@
+<!-- //////////////  START NEWS SECTION ////////// -->
+<section class="section">
+  <div class="container">
+    <div class="section-1 text-light">
+      <h1>SIGN UP TO OUR NEWSLETTER</h1>
+    </div>
+    <div class="section-2">
+      <input type="search" class="enter mt-3" placeholder="Enter Email" />
+      <button type="submit" id="save">SIGN UP</button>
+    </div>
+  </div>
+</section>
+<!-- //////////////  END NEWS SECTION ////////// -->
 <!-- //////////////  START FOOTER SECTION ////////// -->
 <footer class="footer-area footer--light mt-5">
   <div class="footer-big">

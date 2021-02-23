@@ -27,15 +27,25 @@ class HomeController
         $d['category']=Category::where('cid',"No Parent")->get();
         return view('admin.home.add-module',$d);
     }
+
+    public function editSection($id)
+    {
+        $d['title']="Edit Section";
+        $d['category']=Category::where('cid',"No Parent")->get();
+        $d['section']=HomePageSetting::where('id',$id)->first();
+        return view('admin.home.add-module',$d);
+    }
+
     public function store(Request $request)
     {
-        $attribute=[];$i=0;
+        /*$attribute=[];$i=0;
         if($request->has('bseller')){
             $attribute[$i++]=$request->bseller;
         }if($request->has('newA')){
             $attribute[$i++]=$request->newA;
-        }
-
+        }*/
+        /*echo $request->content_title; 
+        exit;*/
       $hm= HomePageSetting::updateOrCreate(['id'=>$request->id],
               ['page_module'=>$request->module,
               "pricing_type"=>$request->pricingType,
@@ -43,7 +53,7 @@ class HomeController
               "min_pricing"=>$request->minPricing,
               "max_pricing"=>$request->maxPricing,
               "product_category"=>json_encode($request->cat),
-              "content_title"=>$request->title,
+              "content_title"=>$request->content_title,
               "contents"=>$request->content,
               "attributes"=>$request->newA,
               "content_position"=>$request->content_post,
@@ -53,10 +63,10 @@ class HomeController
               "meta_title"=>$request->meta_title,
               "meta_description"=>$request->meta_keyword,
                ]);
-               if($request->has('banner')){
+               /*if($request->has('banner')){
                    $hm->images=$request->file('banner')->move('public/banner',$request->file('banner')->getClientOriginalName());
                    $hm->update();
-               }
+               }*/
                return back()->with("msg","added successfully");
     }
     public function destroy($id)

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Symfony\Component\HttpFoundation\Response;
 use App\Product;
-use App\HomePageSetting;
-
-class HomeController extends Controller
+use DB;
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,24 +18,6 @@ class HomeController extends Controller
     public function index()
     {
         //
-        $home_settings = HomePageSetting::orderBy('id','desc')->get();
-        $settings = [];
-        foreach ($home_settings as $key => $value) {
-            # code...
-            $settings[$value->slug] = $value;
-        }
-
-        $data['settings']=$settings; //HomePageSetting::orderBy('id','desc')->get();
-
-        $data['products'] = Product::orderBy('id','desc')->where('parent_id', '=', 0)->where('parent_id', '=', 0)->take(4)->get();
-
-        $data['feature'] = Product::orderBy('id','desc')->where('feature', '=', 1)->where('parent_id', '=', 0)->take(4)->get();
-
-        $data['sales'] = Product::orderBy('id','desc')->where('sales', '=', 1)->where('parent_id', '=', 0)->take(4)->get();
-
-        $data['best_seller'] = Product::orderBy('best_seller','desc')->where('best_seller', '>', 0)->where('parent_id', '=', 0)->take(4)->get();
-
-        return view('frontend.home', $data);
     }
 
     /**
@@ -102,5 +84,46 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function showProduct($slug)
+    {
+        # code...
+        $product = Product::where('slug',$slug)->first();
+
+        $products_variants = DB::table('products_variants')->where('parent_id','=',$product->id)->get();
+        $variants = [];
+        $variants_values = [];
+        
+        foreach ($products_variants as $pvk => $pv) {
+            # code...
+            $variant_value = json_decode($pv->variant_value, true);
+            $variant_id = json_decode($pv->variant_id, true);
+            //
+            foreach ($variant_value as $key => $value) {
+                # code...
+                if (array_key_exists($key,$variants)) {
+                //
+                    if(!in_array($value, $variants[$key])) {
+                        $variants[$key][] = $value;
+                    }
+                }
+                else {
+                    $variants[$key][] = $value;
+                }
+            }
+
+            $variant_value['id'] = $pv->id;
+            $variant_value['p_id'] = $pv->p_id;
+            $variant_value['product'] = Product::findOrFail($pv->p_id);
+            //
+            array_push($variants_values, $variant_value);
+        }
+
+        $d['variants']=$variants;
+        $d['variants_values']=$variants_values;
+        
+        return view('frontend.product.index', ['product'=>$product]);
     }
 }

@@ -235,13 +235,22 @@
 </div>
 </div>
 <div class="seprator-block"></div>
-<h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-comment-text mr-10"></i>Product Features</h6>
-<hr class="light-grey-hr"/>
+<br>
+<br>
+<br>
+
+{{-- <hr class="light-grey-hr"/> --}}
 <div class="row">
-<div class="col-md-12">
-<textarea  name="feature" class="editor1" style="height:400px !important;">{{ isset($product)?$product->feature:'' }}</textarea>
+  <div class="col-md-6">
+    <h6 class="txt-dark capitalize-font">Feature Product</h6>
+    <input type="checkbox" name="feature" value="1" @if($product->feature) checked @endif>
+  </div>
+  <div class="col-md-6">
+    <h6 class="txt-dark capitalize-font">Sales</h6>
+    <input type="checkbox" name="sales" value="1" @if($product->sales) checked @endif>
+  </div>
 </div>
-</div>
+
 <hr>
 <div class="seprator-block"></div>
 <h6 class="txt-dark capitalize-font"><i class="zmdi zmdi-collection-image mr-10"></i>Product Thumbnail <span class=" text-danger">*</span></h6>

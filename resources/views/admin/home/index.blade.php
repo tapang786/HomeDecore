@@ -29,15 +29,16 @@
             <table class=" table table-striped table-hover datatable datatable-User" id="example">
              <thead >
               <tr >
-                <th>Page Module</th>
-                <th>Pricing Type</th>
+                <th>Section Title</th>
+                {{-- <th>Pricing Type</th>
                 <th>Min Pricing</th>
                 <th>Max Pricing</th>
                 <th>Banner</th>
-                <th>Show As</th>
+                <th>Show As</th> --}}
+                <th>Slug</th> 
                 <th>Date</th>
                 <th>Status</th>
-               <th>Action</th>
+                <th>Action</th>
                </tr>
               </thead>
                 <tbody class="c">
@@ -45,15 +46,16 @@
                              <?php $i=1; ?>
                         @foreach($banner as $item)
                         <tr id='{{ $item->id }}'>
-                          <td>{{ $item->page_module }}</td>
-                          <td>{{ Str::ucfirst($item->pricing_type)}}</td>
+                          <td>{{ $item->content_title }}</td>
+                          <td>{{ $item->slug }}</td>
+                          {{-- <td>{{ Str::ucfirst($item->pricing_type)}}</td>
                           <td>{{ $item->min_pricing }}</td>
                           <td>{!! $item->max_pricing !!}</td>
                           <td>@if($item->images)
                             <img src="{{ url(''.'/'.$item->images) }}" style="width:150px;height:100px;" alt="No Image">
                             @endif
                           </td>
-                          <td>{{ $item->show_as }}</td>
+                          <td>{{ $item->show_as }}</td> --}}
                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d-M-yy') }}</td>
                     
                             <td>
@@ -65,13 +67,13 @@
                             </td>
                             <td> 
                             @can('page_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.pages.edit',$item->id) }}">
-                                     <i class="far fa-edit"></i>
-                                    </a>
+                                <a class="btn btn-xs btn-info" href="{{ route('admin.edit-section',$item->id) }}">
+                                 <i class="far fa-edit"></i>
+                                </a>
                              @endcan
-                            @can('page_delete')
-                <a href="javascript:void(0)" class="btn btn-xs btn-danger delpagemod" ><i class="fas fa-trash-alt"></i></a>
-                                 @endcan
+                              @can('page_delete')
+                                <a href="javascript:void(0)" class="btn btn-xs btn-danger delpagemod" ><i class="fas fa-trash-alt"></i></a>
+                              @endcan
                           </td>
                         </tr>
                         @endforeach

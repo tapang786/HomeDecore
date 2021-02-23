@@ -28,6 +28,7 @@ class Product extends Model
             'discount',
             'p_s_description',
             'feature',
+            'sales',
             'p_description',
             'meta_title',
             'meta_keyword',
